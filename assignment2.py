@@ -4,7 +4,6 @@ import wx.dataview
 import pandas as pd
 import wx.grid
 
-# Import your generated classes (mainFrame and fileOpenDia)
 from noname import mainFrame
 
 class MyFrame(mainFrame):
@@ -49,8 +48,34 @@ class MyFrame(mainFrame):
             for i, row in enumerate(df.itertuples(index=False), start=0):
                 for j, cell in enumerate(row):
                     self.m_grid1.SetCellValue(i, j, str(cell))
+
+            self.AddControlsForColumns(df.columns)
         except Exception as e:
             wx.LogError(f"Error loading CSV file: {str(e)}")
+
+    def AddControlsForColumns(self, columns):
+        # Destroy the existing controls
+        for child in self.m_scrolledWindow3.GetChildren():
+            child.Destroy()
+
+        # Create a grid sizer to manage the layout of rows
+        grid_sizer = wx.GridSizer(len(columns), 3, 0, 0)
+
+        for col_index, col_name in enumerate(columns):
+            # Checkbox
+            checkbox = wx.CheckBox(self.m_scrolledWindow3, wx.ID_ANY, "", wx.DefaultPosition, wx.DefaultSize, 0)
+            grid_sizer.Add(checkbox, 0, wx.ALL, 5)
+
+            # Static Text (CSV Header)
+            static_text = wx.StaticText(self.m_scrolledWindow3, wx.ID_ANY, col_name, wx.DefaultPosition, wx.DefaultSize, 0)
+            grid_sizer.Add(static_text, 0, wx.ALL, 5)
+
+            # TextCtrl
+            text_ctrl = wx.TextCtrl(self.m_scrolledWindow3, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0)
+            grid_sizer.Add(text_ctrl, 1, wx.ALL | wx.EXPAND, 5)
+
+        # Set the grid sizer as the sizer for m_scrolledWindow3
+        self.m_scrolledWindow3.SetSizer(grid_sizer)
 
 
 
