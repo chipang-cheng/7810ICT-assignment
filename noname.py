@@ -9,7 +9,7 @@
 
 import wx
 import wx.xrc
-import wx.dataview
+import wx.grid
 
 ###########################################################################
 ## Class mainFrame
@@ -46,49 +46,48 @@ class mainFrame ( wx.Frame ):
 
 		bSizer4.Add( bSizer13, 0, wx.EXPAND, 5 )
 
-		bSizer14 = wx.BoxSizer( wx.HORIZONTAL )
+		bSizer10 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_checkBox4 = wx.CheckBox( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer14.Add( self.m_checkBox4, 0, wx.ALL, 5 )
-
-		self.m_staticText1 = wx.StaticText( self, wx.ID_ANY, u"fieldName", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText1.Wrap( -1 )
-
-		bSizer14.Add( self.m_staticText1, 0, wx.ALL, 5 )
-
-		self.m_textCtrl1 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer14.Add( self.m_textCtrl1, 0, wx.ALL, 5 )
+		self.m_scrolledWindow3 = wx.ScrolledWindow( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.HSCROLL|wx.VSCROLL )
+		self.m_scrolledWindow3.SetScrollRate( 5, 5 )
+		bSizer10.Add( self.m_scrolledWindow3, 1, wx.EXPAND |wx.ALL, 5 )
 
 
-		bSizer4.Add( bSizer14, 1, wx.EXPAND, 5 )
+		bSizer4.Add( bSizer10, 1, wx.EXPAND, 5 )
 
 
 		leftSizer.Add( bSizer4, 1, wx.EXPAND, 5 )
 
 		bSizer = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_dataViewListCtrl4 = wx.dataview.DataViewListCtrl( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer.Add( self.m_dataViewListCtrl4, 0, wx.ALL, 5 )
+		self.m_grid1 = wx.grid.Grid( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+
+		# Grid
+		self.m_grid1.CreateGrid( 5, 5 )
+		self.m_grid1.EnableEditing( True )
+		self.m_grid1.EnableGridLines( True )
+		self.m_grid1.EnableDragGridSize( False )
+		self.m_grid1.SetMargins( 0, 0 )
+
+		# Columns
+		self.m_grid1.EnableDragColMove( False )
+		self.m_grid1.EnableDragColSize( True )
+		self.m_grid1.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+
+		# Rows
+		self.m_grid1.EnableDragRowSize( True )
+		self.m_grid1.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
+
+		# Label Appearance
+
+		# Cell Defaults
+		self.m_grid1.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
+		bSizer.Add( self.m_grid1, 1, wx.ALL, 5 )
 
 
-		leftSizer.Add( bSizer, 1, wx.EXPAND, 5 )
+		leftSizer.Add( bSizer, 0, wx.EXPAND, 5 )
 
 		bottomSizer = wx.BoxSizer( wx.VERTICAL )
-
-		countSizer = wx.BoxSizer( wx.HORIZONTAL )
-
-		self.m_staticText4 = wx.StaticText( self, wx.ID_ANY, u"MyLabel", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText4.Wrap( -1 )
-
-		countSizer.Add( self.m_staticText4, 0, wx.ALL, 5 )
-
-		self.m_staticText5 = wx.StaticText( self, wx.ID_ANY, u"MyLabel", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText5.Wrap( -1 )
-
-		countSizer.Add( self.m_staticText5, 0, wx.ALL, 5 )
-
-
-		bottomSizer.Add( countSizer, 0, wx.EXPAND, 5 )
 
 
 		leftSizer.Add( bottomSizer, 1, wx.EXPAND, 5 )
