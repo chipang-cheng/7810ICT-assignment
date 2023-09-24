@@ -1,13 +1,27 @@
+# -*- coding: utf-8 -*-
+
+###########################################################################
+## Python code generated with wxFormBuilder (version 3.10.1-0-g8feb16b3)
+## http://www.wxformbuilder.org/
+##
+## PLEASE DO *NOT* EDIT THIS FILE!
+###########################################################################
+
 import wx
 import wx.xrc
 import wx.grid
 
 
+###########################################################################
+## Class mainFrame
+###########################################################################
+
 class mainFrame(wx.Frame):
 
     def __init__(self, parent):
-        wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=wx.EmptyString, pos=wx.DefaultPosition,
-                          size=wx.Size(703, 533), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
+        wx.Frame.__init__(self, parent, id=wx.ID_ANY, title=u"2810ICT/7810ICT Group42 assignment2 - Analysis tools ",
+                          pos=wx.DefaultPosition, size=wx.Size(703, 533),
+                          style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
 
         self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
         self.SetForegroundColour(wx.Colour(53, 56, 57))
@@ -46,7 +60,7 @@ class mainFrame(wx.Frame):
         self.m_scrolledWindow3.SetScrollRate(5, 5)
         self.m_scrolledWindow3.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOW))
 
-        grid_sizer = wx.GridSizer( 0, 2, 0, 0 )
+        grid_sizer = wx.GridSizer(0, 2, 0, 0)
 
         self.m_scrolledWindow3.SetSizer(grid_sizer)
         self.m_scrolledWindow3.Layout()
@@ -57,7 +71,7 @@ class mainFrame(wx.Frame):
 
         leftSizer.Add(bSizer4, 1, wx.EXPAND, 5)
 
-        bSizer = wx.BoxSizer(wx.VERTICAL)
+        bSizer = wx.BoxSizer(wx.HORIZONTAL)
 
         self.m_grid1 = wx.grid.Grid(self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0)
 
@@ -82,6 +96,7 @@ class mainFrame(wx.Frame):
 
         # Cell Defaults
         self.m_grid1.SetDefaultCellAlignment(wx.ALIGN_LEFT, wx.ALIGN_TOP)
+        bSizer.Fit(self.m_grid1)
         bSizer.Add(self.m_grid1, 1, wx.ALL, 5)
 
         leftSizer.Add(bSizer, 0, wx.EXPAND, 5)
@@ -115,7 +130,6 @@ class mainFrame(wx.Frame):
         self.m_scrolledWindow2.Layout()
 
         bSizer6.Add(self.m_scrolledWindow2, 1, wx.ALL | wx.EXPAND, 5)
-
 
         self.m_gauge3 = wx.Gauge(self, wx.ID_ANY, 100, wx.DefaultPosition, wx.DefaultSize, wx.GA_HORIZONTAL)
         self.m_gauge3.SetValue(0)
