@@ -5,7 +5,8 @@ import wx.grid
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from noname import mainFrame as mainFrame1
+from noname import mainFrame as mainFrame1, FileOpenDialog, YAxisDialog, \
+    XAxisDialog, ChartPopup
 
 
 class MyFrame(mainFrame1):
@@ -37,8 +38,7 @@ class MyFrame(mainFrame1):
         self.Layout()
 
     def OnOpen(self, event):
-        openFileDialog = wx.FileDialog(self, "Open a file", "", "", "CSV files (*.csv)|*.csv",
-                                       wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+        openFileDialog = FileOpenDialog(self)
         if openFileDialog.ShowModal() == wx.ID_OK:
             selected_file = openFileDialog.GetPath()
             self.hideLayout()
@@ -114,7 +114,7 @@ class MyFrame(mainFrame1):
 
         for checkbox, text_ctrl in zip(self.checkboxes, self.text_controls):
             if checkbox.GetValue():
-                selected_fields.append(text_ctrl.GetId() // 10)  # Extract the column index
+                selected_fields.append(text_ctrl.GetId() // 10)
                 search_texts.append(text_ctrl.GetValue())
         if not selected_fields:
             filtered_data = self.df.copy()
@@ -241,11 +241,11 @@ class MyFrame(mainFrame1):
 
     def GenerateChart(self, event):
         y_axis_choices = [col for col in self.df.columns if col not in ['ACCIDENT_DATE', 'ACCIDENT_TIME']]
-        y_axis_dialog = wx.SingleChoiceDialog(self, "Select Y-axis column:", "Y-axis Selection", y_axis_choices)
+        y_axis_dialog = YAxisDialog(self, y_axis_choices)
         if y_axis_dialog.ShowModal() == wx.ID_OK:
             y_axis_choice = y_axis_dialog.GetStringSelection()
             x_axis_choices = ["ACCIDENT_DATE", "ACCIDENT_TIME"]
-            x_axis_dialog = wx.SingleChoiceDialog(self, "Select X-axis:", "X-axis Selection", x_axis_choices)
+            x_axis_dialog = XAxisDialog(self, x_axis_choices)
             if x_axis_dialog.ShowModal() == wx.ID_OK:
                 x_axis_choice = x_axis_dialog.GetStringSelection()
                 num_rows = self.m_grid1.GetNumberRows()
@@ -283,19 +283,20 @@ class MyFrame(mainFrame1):
                             x_date_format = "%Y"
                         df['X'] = date_values.dt.strftime(x_date_format)
                         grouped_data = df.groupby(['X', 'Y']).size().reset_index(name='Count')
-                        plt.figure(figsize=(12, 8))
+                        fig, ax = plt.subplots(figsize=(8, 6))
                         unique_y_values = grouped_data['Y'].unique()
                         for y_value in unique_y_values:
                             y_data = grouped_data[grouped_data['Y'] == y_value]
-                            plt.plot(y_data['X'], y_data['Count'], marker='o', label=f'{y_value}')
-                        plt.xlabel(x_axis_choice)
-                        plt.ylabel(f"{y_axis_choice} Count")
-                        plt.title(f"Count by {x_axis_choice} for {y_axis_choice}")
-                        plt.legend()
-                        plt.grid(True)
-                        plt.xticks(rotation=45)
-                        plt.tight_layout()
-                        plt.show()
+                            ax.plot(y_data['X'], y_data['Count'], marker='o', label=f'{y_value}')
+                        ax.set_xlabel(x_axis_choice)
+                        ax.set_ylabel(f"{y_axis_choice} Count")
+                        ax.set_title(f"Count by {x_axis_choice} for {y_axis_choice}")
+                        ax.legend()
+                        ax.grid(True)
+                        ax.tick_params(axis='x', rotation=45)
+                        fig.tight_layout()
+                        chart_dialog = ChartPopup(self, fig, x_axis_choice, y_axis_choice)
+                        chart_dialog.ShowModal()
                         self.log_action(f"Generated chart for Y-axis: {y_axis_choice}, X-axis: {x_axis_choice}")
                     elif x_axis_choice == "ACCIDENT_TIME" and 'ACCIDENT_DATE' in self.df.columns:
                         date_values = pd.to_datetime(self.df['ACCIDENT_DATE'] + ' ' + df['X'],
@@ -306,23 +307,23 @@ class MyFrame(mainFrame1):
                         df['Hour'] = date_values.dt.hour
                         date_range = (df['Date'].max() - df['Date'].min()).days
                         if date_range > 0:
-                            # Calculate the total count on each Y-axis value per hour
                             df_grouped = df.groupby(['Hour', 'Y']).size().reset_index(name='Count')
-                            # Calculate the average count per hour
                             df_grouped['Count'] = df_grouped.groupby('Hour')['Count'].transform(
                                 lambda x: x / date_range)
-                            plt.figure(figsize=(12, 8))
+                            fig, ax = plt.subplots(figsize=(8, 6))
                             for y_value in df_grouped['Y'].unique():
                                 y_data = df_grouped[df_grouped['Y'] == y_value]
-                                plt.plot(y_data['Hour'], y_data['Count'], marker='o', label=f'{y_value}')
-                            plt.xlabel("Hour")
-                            plt.ylabel(f"Average {y_axis_choice} Count")
-                            plt.title(f"Average Count by Hour for {y_axis_choice}")
-                            plt.legend()
-                            plt.grid(True)
-                            plt.xticks(range(24))
-                            plt.tight_layout()
-                            plt.show()
+                                ax.plot(y_data['Hour'], y_data['Count'], marker='o', label=f'{y_value}')
+                            ax.set_xlabel("Hour")
+                            ax.set_ylabel(f"Average {y_axis_choice} Count")
+                            ax.set_title(f"Average Count by Hour for {y_axis_choice}")
+                            ax.legend()
+                            ax.grid(True)
+                            ax.set_xticks(range(24))
+                            ax.tick_params(axis='x', rotation=45)
+                            fig.tight_layout()
+                            chart_dialog = ChartPopup(self, fig, x_axis_choice, y_axis_choice)
+                            chart_dialog.ShowModal()
                             self.log_action(f"Generated chart for Y-axis: {y_axis_choice}, X-axis: {x_axis_choice}")
                 else:
                     wx.LogError(f"X-axis or Y-axis column not found in the grid.")
