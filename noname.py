@@ -10,6 +10,8 @@
 import wx
 import wx.xrc
 import wx.grid
+from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
+from matplotlib.backends.backend_wxagg import NavigationToolbar2WxAgg as NavigationToolbar
 
 
 ###########################################################################
@@ -165,3 +167,64 @@ class mainFrame(wx.Frame):
 
     def SearchCSV(self, event):
         event.Skip()
+
+
+class FileOpenDialog(wx.FileDialog):
+    def __init__(self, parent):
+        super().__init__(
+            parent,
+            "Open a file",
+            "",
+            "",
+            "CSV files (*.csv)|*.csv",
+            wx.FD_OPEN | wx.FD_FILE_MUST_EXIST
+        )
+
+    def __del__(self):
+        pass
+
+
+class YAxisDialog(wx.SingleChoiceDialog):
+    def __init__(self, parent, choices):
+        super().__init__(
+            parent,
+            "Select Y-axis column:",
+            "Y-axis Selection",
+            choices
+        )
+
+    def __del__(self):
+        pass
+
+
+class XAxisDialog(wx.SingleChoiceDialog):
+    def __init__(self, parent, choices):
+        super().__init__(
+            parent,
+            "Select X-axis:",
+            "X-axis Selection",
+            choices
+        )
+
+    def __del__(self):
+        pass
+
+
+class ChartPopup(wx.Dialog):
+    def __init__(self, parent, figure, x_label, y_label):
+        super(ChartPopup, self).__init__(parent, wx.ID_ANY, "Chart", size=(1000, 800),
+                                         style=wx.DEFAULT_DIALOG_STYLE|wx.MAXIMIZE_BOX)
+
+        self.figure = figure
+        self.canvas = FigureCanvas(self, wx.ID_ANY, self.figure)
+
+        self.toolbar = NavigationToolbar(self.canvas)
+        self.toolbar.Realize()
+
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        sizer.Add(self.toolbar, 0, wx.EXPAND)
+        sizer.Add(self.canvas, 1, wx.LEFT | wx.TOP | wx.GROW)
+
+        self.SetSizer(sizer)
+        self.Fit()
+
