@@ -77,26 +77,21 @@ class mainFrame(wx.Frame):
 
         self.m_grid1 = wx.grid.Grid(self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0)
 
-        # Grid
         self.m_grid1.CreateGrid(5, 5)
         self.m_grid1.EnableEditing(True)
         self.m_grid1.EnableGridLines(True)
         self.m_grid1.EnableDragGridSize(False)
         self.m_grid1.SetMargins(0, 0)
 
-        # Columns
         self.m_grid1.EnableDragColMove(False)
         self.m_grid1.EnableDragColSize(True)
         self.m_grid1.SetColLabelAlignment(wx.ALIGN_CENTER, wx.ALIGN_CENTER)
 
-        # Rows
         self.m_grid1.EnableDragRowSize(True)
         self.m_grid1.SetRowLabelAlignment(wx.ALIGN_CENTER, wx.ALIGN_CENTER)
 
-        # Label Appearance
         self.m_grid1.SetLabelBackgroundColour(wx.Colour(222, 231, 231))
 
-        # Cell Defaults
         self.m_grid1.SetDefaultCellAlignment(wx.ALIGN_LEFT, wx.ALIGN_TOP)
         bSizer.Fit(self.m_grid1)
         bSizer.Add(self.m_grid1, 1, wx.ALL, 5)
@@ -121,7 +116,6 @@ class mainFrame(wx.Frame):
                                                    wx.HSCROLL | wx.VSCROLL)
         self.m_scrolledWindow2.SetScrollRate(5, 5)
 
-        # Create a sizer for self.m_scrolledWindow2
         scrolled_window2_sizer = wx.BoxSizer(wx.VERTICAL)
 
         self.log_text = wx.TextCtrl(self.m_scrolledWindow2, wx.ID_ANY, "", wx.DefaultPosition, wx.DefaultSize,
@@ -146,7 +140,6 @@ class mainFrame(wx.Frame):
 
         self.Centre(wx.BOTH)
 
-        # Connect Events
         self.Bind(wx.EVT_MENU, self.OnOpen, id=self.fileOpen.GetId())
         self.Bind(wx.EVT_MENU, self.GenerateChart, id=self.chart.GetId())
         self.resetButton.Bind(wx.EVT_BUTTON, self.Reset)
@@ -155,7 +148,6 @@ class mainFrame(wx.Frame):
     def __del__(self):
         pass
 
-    # Virtual event handlers, override them in your derived class
     def OnOpen(self, event):
         event.Skip()
 
