@@ -13,6 +13,7 @@ class MyFrame(mainFrame1):
 
     def __init__(self, parent):
         super().__init__(parent)
+        self.search_text = None
         self.log_action("Please select a CSV file to import.")
         self.checkboxes = []
         self.text_controls = []
@@ -70,11 +71,9 @@ class MyFrame(mainFrame1):
                     self.UpdateGauge(i + 1, rowsnum)
                 self.AddControlsForColumns(self.df.columns)
                 self.UpdateStatistics()
-                self.first_load = False
+                self.first_load = True
                 self.showLayout()
                 self.log_action(f"Loaded CSV file: {file_path}")
-            else:
-                wx.LogError("The CSV file is empty.")
         except Exception as e:
             wx.LogError(f"Error loading CSV file: {str(e)}")
 
@@ -108,7 +107,7 @@ class MyFrame(mainFrame1):
             if checkbox.GetValue():
                 self.checked_checkboxes += 1
 
-    def SearchCSV(self, event):
+    def SearchCSV(self, search_texts):
         selected_fields = []
         search_texts = []
 
@@ -116,6 +115,7 @@ class MyFrame(mainFrame1):
             if checkbox.GetValue():
                 selected_fields.append(text_ctrl.GetId() // 10)
                 search_texts.append(text_ctrl.GetValue())
+        self.checked_checkboxes = len(selected_fields)
         if not selected_fields:
             filtered_data = self.df.copy()
             columns_to_display = list(self.df.columns)
@@ -145,6 +145,7 @@ class MyFrame(mainFrame1):
                     cell = row[field]
                     self.m_grid1.SetCellValue(i, j, str(cell))
                 self.UpdateGauge(i + 1, len(filtered_data))
+                self.first_load = False
         self.UpdateStatistics()
         self.Layout()
 
@@ -272,7 +273,6 @@ class MyFrame(mainFrame1):
                     if x_axis_choice == "ACCIDENT_DATE" and 'ACCIDENT_DATE' in self.df.columns:
                         date_values = pd.to_datetime(df['X'], format='%d/%m/%Y', errors='coerce')
                         date_diff = (date_values.max() - date_values.min()).days
-                        print(date_diff)
                         if date_diff < 1:
                             x_date_format = "%d/%m/%Y"
                         elif date_diff <= 30:
