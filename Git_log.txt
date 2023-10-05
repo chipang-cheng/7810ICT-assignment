@@ -1,0 +1,23 @@
+commit bab59349e0a4885c45ebeb0e193fb79bd4f4ee58
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Sat Sep 2 12:12:00 2023 +1000
+
+    software_design_doc
+
+commit 5e70bc0487a8ad4083780e22adc04dd7882dce53
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Sat Sep 2 09:33:28 2023 +1000
+
+    project_planning
+
+commit bd0642c7ab3d617767237e7727a0cccb665293f3
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Wed Aug 30 22:04:43 2023 +1000
+
+    Project planning
+
+commit 20fa767e0db7f829f26938a28d43cfc0ff052b10
+Author: cks1234 <140681996+cks1234@users.noreply.github.com>
+Date:   Wed Aug 30 21:54:21 2023 +1000
+
+    Initial commit
