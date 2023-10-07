@@ -1,0 +1,150 @@
+commit 627c18828834ecebeca0bdf5bf26c4489303b835
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Sat Oct 7 11:51:42 2023 +1000
+
+    partb
+
+commit 4b4b23350292cf11d3244c9869c3ca75f40379b8
+Merge: a685348 068cbf1
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Thu Oct 5 12:35:50 2023 +1000
+
+    Merge branch 'main' of https://github.com/cks1234/7810ICT-assignment
+
+commit a685348076b6c2064e0d5bcbe151c71c1a761c4b
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Thu Oct 5 12:34:11 2023 +1000
+
+    update
+
+commit 06e93659a49f6ca6fed2a1850662a36d0d803743
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Thu Oct 5 12:24:47 2023 +1000
+
+    update
+
+commit 11d7c63685663ba8f6caf92cf9b3d1d120838ee3
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Thu Oct 5 12:23:55 2023 +1000
+
+    update
+
+commit 511ce62919ea7ff0532c16529ba975a161a14ce8
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Thu Oct 5 12:22:50 2023 +1000
+
+    update
+
+commit 068cbf145ec57c45fc733f2778894cf62124360f
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Wed Oct 4 14:30:36 2023 +1000
+
+    fixed some weak warnings
+
+commit abc863bb2745efaa91a35eb4ad78dc87ea141d6e
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Sun Oct 1 15:00:45 2023 +1000
+
+    modified function of generating chart, display it on a popup window
+
+commit 2f5618cf1863464d8040f004704e11cbf7c9f852
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Sun Oct 1 14:59:42 2023 +1000
+
+    modified GUI
+
+commit 929439de4cab3d9b7e70ca1957132f03f531d308
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Sun Sep 24 18:54:47 2023 +1000
+
+    user manual for assignment2.py
+
+commit 3e0676621bc84c3322426bf8eac6822a704d4e42
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Sun Sep 24 18:53:56 2023 +1000
+
+    modified logic for generating chart
+
+commit 03ad4e904f033874934787bfd7b336513ccdfb8a
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Sun Sep 24 18:52:55 2023 +1000
+
+    modified GUI
+
+commit 34e5f5c98a9c884ea4b17302ff67bf1dab360f50
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Sat Sep 23 17:16:14 2023 +1000
+
+    Added log function and logic for error prevention and handling
+
+commit 83a0993f31c44b5a1dd9d580f0f92a17fcebb6b3
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Sat Sep 23 16:54:50 2023 +1000
+
+    modified GUI
+
+commit 3baee2ff8dd1cb74ad772e389ee618c6ae9eea19
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Fri Sep 22 22:15:50 2023 +1000
+
+    Added function for chart generation and fixed percentage incorrect problem
+
+commit 5e45f9f722718925b3613b4f3b2b0b868b7deeb8
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Wed Sep 20 18:08:57 2023 +1000
+
+    modified GUI
+
+commit db8f6e8f578b829ae0bfda6d26d675e2e61193a1
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Wed Sep 20 16:42:01 2023 +1000
+
+    Added search function and Statistics analysis functions
+
+commit 0760bd6663b73aa81c73b75307b54213c2c80cfe
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Tue Sep 19 16:29:53 2023 +1000
+
+    Added function to display checkbox, field name, and input box in a row, and replicate row based on csv header numbers
+
+commit 609d35b02dc115ab56c78861d8e8ada57795966a
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Tue Sep 19 14:29:08 2023 +1000
+
+    Added LoadCSV function and display on grid
+
+commit 87958181a7a3f8c289b8854598fc8b07232a3a20
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Mon Sep 18 15:34:59 2023 +1000
+
+    initial program with open file
+
+commit 280f6f5c0a46c8bfb54ac51a5013d85282efde96
+Author: chipang_cheng <chipang.cheng@griffithuni.edu.au>
+Date:   Mon Sep 18 15:33:40 2023 +1000
+
+    initial GUI
+
+commit bab59349e0a4885c45ebeb0e193fb79bd4f4ee58
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Sat Sep 2 12:12:00 2023 +1000
+
+    software_design_doc
+
+commit 5e70bc0487a8ad4083780e22adc04dd7882dce53
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Sat Sep 2 09:33:28 2023 +1000
+
+    project_planning
+
+commit bd0642c7ab3d617767237e7727a0cccb665293f3
+Author: cks1234 <cks123456987@gmail.com>
+Date:   Wed Aug 30 22:04:43 2023 +1000
+
+    Project planning
+
+commit 20fa767e0db7f829f26938a28d43cfc0ff052b10
+Author: cks1234 <140681996+cks1234@users.noreply.github.com>
+Date:   Wed Aug 30 21:54:21 2023 +1000
+
+    Initial commit
